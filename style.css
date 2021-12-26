@@ -4,3 +4,16 @@ body {
 	padding: 0;
 }
 
+
+
+.albums {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card {
+	padding: 10px;
+	margin: 10px;
+	border: 1px red solid;
+}
+

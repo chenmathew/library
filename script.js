@@ -11,24 +11,21 @@ class Album{
 }
 
 const sub = document.getElementById("submit")
-const penis = document.getElementById("penis")
+const albums = document.getElementById("albums")
 
 function addAlbum(name, rating) {
 	for (i; i < musicLibrary.length; i++) {}
 	const newAlbum = new Album(name, rating)
 	musicLibrary[i] = newAlbum
 	let p = document.createElement("div")
-	p.innerText = "Name: " + newAlbum.name
-	penis.appendChild(p)
-	p = document.createElement("div")
-	p.innerText = "Rating: " + newAlbum.rating
-	penis.appendChild(p)
-	p = document.createElement("p")
-	penis.appendChild(p)
+	p.innerText = "Name: " + newAlbum.name + '\n' + "Rating: " + newAlbum.rating
+	p.className = "card"
+	albums.appendChild(p)
 }
 
 sub.addEventListener("click", function() {
 	const name = document.getElementById("name")
 	const rating = document.getElementById("rating")
-	addAlbum(name.value, rating.value)
+	//if (name.value != "" && rating.value != "")
+		addAlbum(name.value, rating.value)
 })
