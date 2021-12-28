@@ -4,28 +4,31 @@ let i = 0;
 
 class Album{
 
-	constructor (name, rating) {
-		this.name = name
-		this.rating = rating
+	constructor (title, artist, len, listened) {
+		this.title = title
+		this.artist = artist
+		this.len = len
+		this.listened = listened
 	}
 }
 
 const sub = document.getElementById("submit")
 const albums = document.getElementById("albums")
 
-function addAlbum(name, rating) {
+function addAlbum(title, artist, len, listened) {
 	for (i; i < musicLibrary.length; i++) {}
-	const newAlbum = new Album(name, rating)
+	const newAlbum = new Album(title, artist, len, listened)
 	musicLibrary[i] = newAlbum
 	let p = document.createElement("div")
-	p.innerText = "Name: " + newAlbum.name + '\n' + "Rating: " + newAlbum.rating
+	p.innerText = "Name: " + newAlbum.title + '\n' + "Rating: " + newAlbum.artist
 	p.className = "card"
 	albums.appendChild(p)
 }
 
 sub.addEventListener("click", function() {
-	const name = document.getElementById("name")
-	const rating = document.getElementById("rating")
+	const title = document.getElementById("title")
+	const artist = document.getElementById("artist")
 	//if (name.value != "" && rating.value != "")
-		addAlbum(name.value, rating.value)
+		addAlbum(title.value, artist.value)
 })
+

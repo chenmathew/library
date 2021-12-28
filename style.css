@@ -5,6 +5,12 @@ body {
 }
 
 
+a {
+	margin: 100px;
+	padding: 100px;
+	border: 1px red solid;
+}
+
 
 .albums {
 	display: flex;
