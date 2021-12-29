@@ -17,7 +17,7 @@ let bad = document.getElementById("requirement")
 
 function removeBtnFunc(p) {
 	p.remove()
-	musicLibrary[i] = ""
+	musicLibrary.splice(i, 1)
 	i--
 }
 
