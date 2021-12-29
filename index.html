@@ -9,20 +9,30 @@
 	<title>Document</title>
 </head>
 <body>
-	<div>
-		title: <input id="title">
+	<div class="flex-container">
+		<div class="title">
+			Title <input type="text" id="title" class="titleInput">
+		</div>
+		<div class="artist">
+			Artist <input type="text" id="artist"> 
+		</div>
+		<div class="length">
+			Length <input type="text" id="length">
 	</div>
 	<div>
-		artist: <input id="artist"> 
+		<label class="container">Listened? 
+			<input type="radio" name="radio" value="Yes">
+			<span class="checked">Yes</span>
+		</label>
+		<label class="container">
+			<input type="radio" name="radio" id="No" value="No">
+			<span class="checked">No</span>
+		</label>
 	</div>
-	<div>
-		length: <input id="length">
-	</div>
-	<div>
-		read: <input id="listened"> 
-	</div>
-	<button id="submit">Submit</button>
-	<div id="albums" class="albums">
+		<button id="submit" class="submit">Submit</button>
+		<div id="requirement" class="requirement"></div>
+		<div id="albums" class="albums">
+		</div>
 	</div>
 	
 </body>
