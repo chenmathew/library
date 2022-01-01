@@ -1,5 +1,4 @@
 let musicLibrary = []
-let removeBtn = []
 let i = 0;
 
 class Album{
@@ -15,10 +14,45 @@ const sub = document.getElementById("submit")
 const albums = document.getElementById("albums")
 let bad = document.getElementById("requirement")
 
-function removeBtnFunc(p) {
-	p.remove()
+function removeBtnFunc(card) {
+	card.remove()
 	musicLibrary.splice(i, 1)
 	i--
+}
+
+function toggleFunc(card, updatedAlbum) {
+	if (updatedAlbum.listened == "No")
+		updatedAlbum.listened = "Yes"
+	else
+		updatedAlbum.listened = "No"
+	newCard(updatedAlbum)
+	removeBtnFunc(card)
+}
+
+function updateCard(newAlbum) {
+	let card = document.createElement("div")
+	card.innerText = "Name: " + newAlbum.title + '\n' + "Artist: " + newAlbum.artist + "\n" + "Length: " + newAlbum.len + '\n' + "Listened: " + newAlbum.listened + "\n"
+	card.className = "card"
+	let btn = document.createElement("button")
+	btn.innerText = "Remove"
+	btn.id = "remove"
+	let toggle = document.createElement("button")
+	toggle.innerText = "Toggle"
+	card.appendChild(toggle)
+	card.appendChild(btn)
+	btn.addEventListener("click", function() {
+		removeBtnFunc(card)
+	})
+	toggle.addEventListener("click", function() {
+		toggleFunc(card, newAlbum)
+	})
+	return card
+}
+
+
+function newCard(newAlbum) {
+	let card = updateCard(newAlbum)
+	albums.appendChild(card)
 }
 
 
@@ -32,21 +66,7 @@ function addAlbum(title, artist, len, listened) {
 	}
 	const newAlbum = new Album(title, artist, len, listened)
 	musicLibrary[i] = newAlbum
-	let p = document.createElement("div")
-	p.innerText = "Name: " + newAlbum.title + '\n' + "Artist: " + newAlbum.artist + "\n" + "Length: " + newAlbum.len + '\n' + "Listened: " + newAlbum.listened + "\n"
-	p.className = "card"
-	let btn = document.createElement("button")
-	btn.innerText = "Remove"
-	btn.id = "remove"
-	removeBtn[i] = btn
-	removeBtn[i].addEventListener("click", function() {
-		removeBtnFunc(p)
-	})
-	let edit = document.createElement("button")
-	edit.innerText = "Edit"
-	p.appendChild(edit)
-	p.appendChild(btn)
-	albums.appendChild(p)
+	newCard(musicLibrary[i])
 }
 
 
