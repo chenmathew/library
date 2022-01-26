@@ -14,48 +14,49 @@ const sub = document.getElementById("submit")
 const albums = document.getElementById("albums")
 let bad = document.getElementById("requirement")
 
-function removeBtnFunc(card) {
+removeBtnFunc = (card) => {
 	card.remove()
 	musicLibrary.splice(i, 1)
 	i--
 }
 
-function toggleFunc(card, updatedAlbum) {
+toggleFunc = (card, updatedAlbum) => {
 	if (updatedAlbum.listened == "No") {
 		updatedAlbum.listened = "Yes"
 	}
 	else {
 		updatedAlbum.listened = "No"
 	}
-	card.innerText = `Name: ${updatedAlbum.title}
-					Artist: ${updatedAlbum.artist}
-					Length: ${updatedAlbum.len}
-					Listened: ${updatedAlbum.listened}
-					`
+	setInnerText(card, updatedAlbum)
 	createButton(card, updatedAlbum)
 }
 
-function updateCard(newAlbum) {
+updateCard = (newAlbum) => {
 	let card = document.createElement("div")
-	card.innerText = `Name: ${newAlbum.title}
-					Artist: ${newAlbum.artist}
-					Length: ${newAlbum.len}
-					Listened: ${newAlbum.listened}
-					`
-	card.className = "card"
+	setInnerText(card, newAlbum)
 	createButton(card, newAlbum)
 	return card
 }
 
-function createButton(card, newAlbum) {
-	let btn = document.createElement("button")
-	btn.innerText = `Remove`
-	btn.id = "remove"
+setInnerText = (card, album) => {
+	card.innerText = `Name: ${album.title}
+					Artist: ${album.artist}
+					Length: ${album.len}
+					Listened: ${album.listened}
+					`
+	card.className = "card"
+}
+
+createButton = (card, newAlbum) => {
+	let remove = document.createElement("button")
+	remove.innerText = `Remove`
+	remove.className = "cardButtons"
 	let toggle = document.createElement("button")
 	toggle.innerText = `Toggle`
+	toggle.className = "cardButtons"
 	card.appendChild(toggle)
-	card.appendChild(btn)
-	btn.addEventListener("click", function() {
+	card.appendChild(remove)
+	remove.addEventListener("click", function() {
 		removeBtnFunc(card)
 	})
 	toggle.addEventListener("click", function() {
@@ -64,14 +65,14 @@ function createButton(card, newAlbum) {
 }
 
 
-function newCard(newAlbum) {
+newCard = (newAlbum) => {
 	let card = updateCard(newAlbum)
 	albums.appendChild(card)
 }
 
 
 
-function addAlbum(title, artist, len, listened) {
+addAlbum = (title, artist, len, listened) => {
 	for (i = 0; i < musicLibrary.length; i++) {
 		if (musicLibrary[i].title == title && musicLibrary[i].artist == artist) {
 			bad.innerText = `You've already added this album`
@@ -108,4 +109,3 @@ sub.addEventListener("click", function() {
 		bad.innerText = `Please fill out all lines`
 	}
 })
-

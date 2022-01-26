@@ -46,6 +46,11 @@ button:hover {
 	border: 2px black solid;
 }
 
+.card:hover .cardButtons, .card:hover {
+	background-color: aliceblue;
+}
+
+
 .flex-container {
 	margin: 20px;
 }
@@ -91,4 +96,3 @@ button:hover {
 .container input:checked ~ .checked {
 	text-decoration: line-through;
 }
-
