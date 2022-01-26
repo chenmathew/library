@@ -21,23 +21,38 @@ function removeBtnFunc(card) {
 }
 
 function toggleFunc(card, updatedAlbum) {
-	if (updatedAlbum.listened == "No")
+	if (updatedAlbum.listened == "No") {
 		updatedAlbum.listened = "Yes"
-	else
+	}
+	else {
 		updatedAlbum.listened = "No"
-	newCard(updatedAlbum)
-	removeBtnFunc(card)
+	}
+	card.innerText = `Name: ${updatedAlbum.title}
+					Artist: ${updatedAlbum.artist}
+					Length: ${updatedAlbum.len}
+					Listened: ${updatedAlbum.listened}
+					`
+	createButton(card, updatedAlbum)
 }
 
 function updateCard(newAlbum) {
 	let card = document.createElement("div")
-	card.innerText = "Name: " + newAlbum.title + '\n' + "Artist: " + newAlbum.artist + "\n" + "Length: " + newAlbum.len + '\n' + "Listened: " + newAlbum.listened + "\n"
+	card.innerText = `Name: ${newAlbum.title}
+					Artist: ${newAlbum.artist}
+					Length: ${newAlbum.len}
+					Listened: ${newAlbum.listened}
+					`
 	card.className = "card"
+	createButton(card, newAlbum)
+	return card
+}
+
+function createButton(card, newAlbum) {
 	let btn = document.createElement("button")
-	btn.innerText = "Remove"
+	btn.innerText = `Remove`
 	btn.id = "remove"
 	let toggle = document.createElement("button")
-	toggle.innerText = "Toggle"
+	toggle.innerText = `Toggle`
 	card.appendChild(toggle)
 	card.appendChild(btn)
 	btn.addEventListener("click", function() {
@@ -46,7 +61,6 @@ function updateCard(newAlbum) {
 	toggle.addEventListener("click", function() {
 		toggleFunc(card, newAlbum)
 	})
-	return card
 }
 
 
@@ -60,7 +74,7 @@ function newCard(newAlbum) {
 function addAlbum(title, artist, len, listened) {
 	for (i = 0; i < musicLibrary.length; i++) {
 		if (musicLibrary[i].title == title && musicLibrary[i].artist == artist) {
-			bad.innerText = "You've already added this album"
+			bad.innerText = `You've already added this album`
 			return
 		}
 	}
@@ -91,7 +105,7 @@ sub.addEventListener("click", function() {
 		addAlbum(title, artist, len, listened)
 	}
 	else {
-		bad.innerText = "Please fill out all lines"
+		bad.innerText = `Please fill out all lines`
 	}
 })
 
